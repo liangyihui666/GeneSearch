@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.pnpm-store/
+.impeccable/review/
+*.tgz
+.env*
+!.env.example
