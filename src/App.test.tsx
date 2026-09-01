@@ -17,7 +17,7 @@ describe('Gene lookup app', () => {
   it('finds a therapy from a gene search', async () => {
     const user = userEvent.setup()
     render(<App />)
-    await user.click(screen.getByRole('tab', { name: '基因找药' }))
+    await user.click(screen.getByRole('button', { name: '基因找药' }))
     await user.type(screen.getByRole('textbox', { name: /搜索/ }), 'EGFR L858R')
     expect(screen.getByRole('heading', { name: '表皮生长因子受体' })).toBeInTheDocument()
     expect(screen.getByText('Zorifertinib（泽瑞尼）')).toBeInTheDocument()
@@ -26,7 +26,7 @@ describe('Gene lookup app', () => {
   it('supports reverse lookup from a domestic drug to its biomarker', async () => {
     const user = userEvent.setup()
     render(<App />)
-    await user.click(screen.getByRole('tab', { name: '药物找靶点' }))
+    await user.click(screen.getByRole('button', { name: '药物找靶点' }))
     await user.type(screen.getByRole('textbox', { name: /搜索/ }), '谷美替尼')
     expect(screen.getByText('MET')).toBeInTheDocument()
     expect(screen.getByText('MET 14号外显子跳跃突变')).toBeInTheDocument()
@@ -35,7 +35,7 @@ describe('Gene lookup app', () => {
   it('finds multiple biomarkers by cancer type', async () => {
     const user = userEvent.setup()
     render(<App />)
-    await user.click(screen.getByRole('tab', { name: '癌种找标志物' }))
+    await user.click(screen.getByRole('button', { name: '癌种找标志物' }))
     await user.type(screen.getByRole('textbox', { name: /搜索/ }), '胃癌')
     expect(screen.getByText('ERBB2')).toBeInTheDocument()
     expect(screen.getByText('CLDN18.2')).toBeInTheDocument()
@@ -49,6 +49,7 @@ describe('Gene lookup app', () => {
     expect(screen.getByRole('heading', { name: 'EGFR' })).toBeInTheDocument()
     expect(screen.getByText('临床结论')).toBeInTheDocument()
     expect(screen.getByText('国家药品监督管理局（NMPA）')).toBeInTheDocument()
+    expect(screen.getByText(/官方来源已核对 · 医学文案待审/)).toBeInTheDocument()
     expect(screen.getByText(/不替代临床判断/)).toBeInTheDocument()
   })
 

@@ -31,6 +31,9 @@ export interface GeneEvidenceRecord {
   contentStatus: '国内官方来源已核对 · 医学文案待审'
 }
 
+export const contentVersion = 'Demo v0.1'
+export const contentUpdatedAt = '2026-09-01'
+
 export const evidenceRecords: GeneEvidenceRecord[] = [
   {
     id: 'egfr-l858r-nsclc',

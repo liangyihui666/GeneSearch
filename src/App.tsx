@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, type RefObject } from 'react'
 import {
   ArrowLeft,
   ArrowSquareOut,
@@ -14,6 +14,8 @@ import {
   X,
 } from '@phosphor-icons/react'
 import {
+  contentUpdatedAt,
+  contentVersion,
   evidenceRecords,
   findEvidenceRecord,
   searchEvidence,
@@ -110,7 +112,12 @@ function ResultCard({ record, onOpen, onTherapySearch }: ResultCardProps) {
         </div>
       </div>
 
-      <button className="evidence-card__detail" type="button" onClick={onOpen}>
+      <button
+        className="evidence-card__detail"
+        type="button"
+        data-record-id={record.id}
+        onClick={onOpen}
+      >
         <span>
           <CheckCircle size={17} weight="fill" />
           查看临床结论与适用条件
@@ -124,9 +131,10 @@ function ResultCard({ record, onOpen, onTherapySearch }: ResultCardProps) {
 interface DetailScreenProps {
   record: GeneEvidenceRecord
   onBack: () => void
+  headingRef: RefObject<HTMLHeadingElement | null>
 }
 
-function DetailScreen({ record, onBack }: DetailScreenProps) {
+function DetailScreen({ record, onBack, headingRef }: DetailScreenProps) {
   return (
     <main className="lookup-screen detail-screen">
       <div className="detail-nav">
@@ -142,12 +150,15 @@ function DetailScreen({ record, onBack }: DetailScreenProps) {
           <Dna size={28} weight="duotone" />
         </div>
         <p>{record.nameZh}</p>
-        <h1>{record.symbol}</h1>
+        <h1 ref={headingRef} tabIndex={-1}>{record.symbol}</h1>
         <strong>{record.alteration}</strong>
         <span className="detail-hero__status">
           <ShieldCheck size={15} weight="fill" />
           {record.evidenceLabel}
         </span>
+        <p className="detail-review-status">
+          {record.contentStatus} · {contentVersion} · 更新 {contentUpdatedAt}
+        </p>
       </section>
 
       <section className="detail-section detail-section--conclusion">
@@ -225,7 +236,7 @@ function DetailScreen({ record, onBack }: DetailScreenProps) {
       </a>
 
       <p className="medical-disclaimer">
-        示例数据 · 医学文案待审，不替代临床判断。实际使用请核对最新版说明书及监管信息。
+        {contentVersion} · 内容更新 {contentUpdatedAt}。医学文案待审，不替代临床判断；实际使用请核对最新版说明书及监管信息。
       </p>
     </main>
   )
@@ -236,12 +247,28 @@ export default function App() {
   const [query, setQuery] = useState('')
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const searchRef = useRef<HTMLInputElement>(null)
+  const detailHeadingRef = useRef<HTMLHeadingElement>(null)
+  const returnFocusIdRef = useRef<string | null>(null)
   const selectedRecord = selectedId ? findEvidenceRecord(selectedId) : undefined
   const results = useMemo(() => searchEvidence(query, mode), [query, mode])
   const currentMode = lookupModes.find((item) => item.id === mode) ?? lookupModes[0]
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    window.requestAnimationFrame(() => {
+      if (selectedId) {
+        detailHeadingRef.current?.focus()
+        return
+      }
+
+      if (returnFocusIdRef.current) {
+        document
+          .querySelector<HTMLButtonElement>(
+            `[data-record-id="${returnFocusIdRef.current}"]`,
+          )
+          ?.focus()
+      }
+    })
   }, [selectedId])
 
   const applySearch = (value: string, nextMode: LookupMode) => {
@@ -257,7 +284,11 @@ export default function App() {
         <div className="aurora aurora-one" aria-hidden="true" />
         <div className="aurora aurora-two" aria-hidden="true" />
         <div className="app-frame lookup-frame">
-          <DetailScreen record={selectedRecord} onBack={() => setSelectedId(null)} />
+          <DetailScreen
+            record={selectedRecord}
+            onBack={() => setSelectedId(null)}
+            headingRef={detailHeadingRef}
+          />
         </div>
       </div>
     )
@@ -278,13 +309,12 @@ export default function App() {
           </section>
 
           <section className="search-console" aria-label="基因速查搜索">
-            <div className="mode-tabs" role="tablist" aria-label="搜索方向">
+            <div className="mode-tabs" role="group" aria-label="搜索方向">
               {lookupModes.map((item) => (
                 <button
                   key={item.id}
                   type="button"
-                  role="tab"
-                  aria-selected={mode === item.id}
+                  aria-pressed={mode === item.id}
                   onClick={() => setMode(item.id)}
                 >
                   {item.label}
@@ -329,6 +359,13 @@ export default function App() {
               </div>
               <strong>{results.length} 条</strong>
             </div>
+            <div className="content-gate" role="status">
+              <ShieldCheck size={17} weight="fill" />
+              <span>
+                <strong>官方来源已核对 · 医学文案待审</strong>
+                <small>{contentVersion} · 内容更新 {contentUpdatedAt}</small>
+              </span>
+            </div>
 
             {results.length > 0 ? (
               <div className="results-list">
@@ -336,7 +373,10 @@ export default function App() {
                   <ResultCard
                     key={record.id}
                     record={record}
-                    onOpen={() => setSelectedId(record.id)}
+                    onOpen={() => {
+                      returnFocusIdRef.current = record.id
+                      setSelectedId(record.id)
+                    }}
                     onTherapySearch={(therapy) => applySearch(therapy, 'drug')}
                   />
                 ))}

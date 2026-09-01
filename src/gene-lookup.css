@@ -36,17 +36,17 @@
 }
 .lookup-brand p, .lookup-brand h1 { margin: 0; }
 .lookup-brand p {
-  color: #707b96; font-size: 9px; font-weight: 800; letter-spacing: 0.1em;
+  color: #5e6980; font-size: 11px; font-weight: 800; letter-spacing: 0.08em;
 }
 .lookup-brand h1 { margin-top: 2px; font-size: 21px; letter-spacing: -0.04em; }
 .lookup-brand__count {
   flex: 0 0 auto; padding: 7px 10px;
   border: 1px solid rgba(91, 92, 226, 0.14); border-radius: 999px;
   color: #5558c9; background: rgba(255, 255, 255, 0.58);
-  font-size: 11px; font-weight: 700;
+  font-size: 12px; font-weight: 700;
 }
 
-.lookup-intro { padding: 38px 4px 23px; }
+.lookup-intro { padding: 27px 4px 17px; }
 .lookup-eyebrow {
   display: flex; align-items: center; gap: 6px; margin: 0 0 9px;
   color: #5558d5; font-size: 12px; font-weight: 800;
@@ -73,11 +73,11 @@
   padding: 3px; border-radius: 12px; background: rgba(226, 234, 247, 0.7);
 }
 .mode-tabs button {
-  min-height: 34px; padding: 5px 3px; border: 0; border-radius: 9px;
-  color: #66718a; background: transparent; font-size: 11px; font-weight: 700;
+  min-height: 44px; padding: 7px 3px; border: 0; border-radius: 9px;
+  color: #59657d; background: transparent; font-size: 12px; font-weight: 700;
   cursor: pointer;
 }
-.mode-tabs button[aria-selected="true"] {
+.mode-tabs button[aria-pressed="true"] {
   color: #4e50c8; background: #fff;
   box-shadow: 0 4px 13px rgba(75, 93, 138, 0.12);
 }
@@ -98,7 +98,7 @@
 }
 .search-field input::placeholder { color: #929cb0; }
 .search-field button {
-  display: grid; flex: 0 0 auto; width: 28px; height: 28px;
+  display: grid; flex: 0 0 auto; width: 44px; height: 44px;
   place-items: center; border: 0; border-radius: 50%;
   color: #66718a; background: #eaf0f8; cursor: pointer;
 }
@@ -108,16 +108,16 @@
 }
 .quick-searches::-webkit-scrollbar, .tag-row::-webkit-scrollbar { display: none; }
 .quick-searches > span {
-  flex: 0 0 auto; color: #8690a5; font-size: 10px; font-weight: 700;
+  flex: 0 0 auto; color: #647088; font-size: 12px; font-weight: 700;
 }
 .quick-searches button {
-  flex: 0 0 auto; padding: 6px 9px;
+  flex: 0 0 auto; min-height: 44px; padding: 8px 11px;
   border: 1px solid rgba(91, 92, 226, 0.12); border-radius: 999px;
-  color: #5659ba; background: #f2f1ff; font-size: 10px; font-weight: 700;
+  color: #4d50a8; background: #f2f1ff; font-size: 12px; font-weight: 700;
   cursor: pointer;
 }
 
-.results-section { padding-top: 29px; }
+.results-section { padding-top: 22px; }
 .results-heading {
   display: flex; align-items: end; justify-content: space-between;
   padding: 0 3px 12px;
@@ -125,11 +125,19 @@
 .results-heading > div { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .results-heading span { font-size: 15px; font-weight: 800; }
 .results-heading small {
-  max-width: 270px; overflow: hidden; color: #8a94aa;
-  font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+  max-width: 270px; overflow: hidden; color: #647088;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
   text-overflow: ellipsis; white-space: nowrap;
 }
-.results-heading strong { color: #5659c9; font-size: 12px; }
+.results-heading strong { color: #4e51bd; font-size: 12px; }
+.content-gate {
+  display: flex; align-items: center; gap: 9px; margin-bottom: 12px;
+  padding: 10px 12px; border: 1px solid rgba(39, 145, 134, 0.13);
+  border-radius: 11px; color: #217e75; background: rgba(231, 248, 245, 0.72);
+}
+.content-gate > span { display: flex; flex-direction: column; gap: 2px; }
+.content-gate strong { color: #2f4f50; font-size: 12px; }
+.content-gate small { color: #587873; font-size: 11px; }
 .results-list { display: grid; gap: 13px; }
 .evidence-card {
   position: relative; padding: 17px; overflow: hidden;
@@ -156,11 +164,11 @@
 }
 .gene-identity h2, .gene-identity p { margin: 0; }
 .gene-identity h2 { padding-top: 1px; font-size: 15px; line-height: 1.35; }
-.gene-identity p { margin-top: 4px; color: #747f96; font-size: 11px; line-height: 1.45; }
+.gene-identity p { margin-top: 4px; color: #5f6b82; font-size: 12px; line-height: 1.45; }
 .evidence-pill {
   display: inline-flex; align-items: center; gap: 4px; flex: 0 0 auto;
   padding: 5px 7px; border-radius: 999px; color: #187c76;
-  background: #e5f7f4; font-size: 9px; font-weight: 800;
+  background: #e5f7f4; font-size: 11px; font-weight: 800;
 }
 .tag-row {
   display: flex; gap: 6px; margin: 13px 0 14px 60px;
@@ -168,7 +176,7 @@
 }
 .tag-row span {
   flex: 0 0 auto; padding: 5px 8px; border-radius: 7px;
-  color: #68748b; background: #f0f4fa; font-size: 10px; font-weight: 700;
+  color: #56627a; background: #f0f4fa; font-size: 12px; font-weight: 700;
 }
 .therapy-block {
   padding: 12px; border: 1px solid rgba(103, 143, 190, 0.15);
@@ -179,28 +187,28 @@
   display: flex; align-items: center;
 }
 .therapy-block__heading {
-  justify-content: space-between; color: #4556a9; font-size: 11px; font-weight: 800;
+  justify-content: space-between; color: #4556a9; font-size: 12px; font-weight: 800;
 }
 .therapy-block__heading > span { gap: 6px; }
-.therapy-block__heading small { color: #74829c; font-size: 9px; }
+.therapy-block__heading small { color: #59677f; font-size: 11px; }
 .therapy-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
 .therapy-list button {
-  display: inline-flex; align-items: center; gap: 5px; padding: 7px 9px;
+  display: inline-flex; align-items: center; gap: 5px; min-height: 44px; padding: 9px 11px;
   border: 1px solid rgba(89, 119, 170, 0.16); border-radius: 8px;
   color: #355c7c; background: rgba(255, 255, 255, 0.88);
   box-shadow: 0 3px 8px rgba(70, 96, 139, 0.06);
-  font-size: 11px; font-weight: 700; cursor: pointer;
+  font-size: 12px; font-weight: 700; cursor: pointer;
 }
 .evidence-card__detail {
   display: flex; align-items: center; justify-content: space-between;
-  width: 100%; margin-top: 13px; padding: 3px 1px 0; border: 0;
-  color: #5659c8; background: transparent; font-size: 11px; font-weight: 800;
+  width: 100%; min-height: 44px; margin-top: 8px; padding: 8px 1px; border: 0;
+  color: #4d50b7; background: transparent; font-size: 12px; font-weight: 800;
   cursor: pointer;
 }
 .evidence-card__detail span { display: flex; align-items: center; gap: 6px; }
 .lookup-footer {
   display: flex; align-items: center; justify-content: center; gap: 6px;
-  padding: 25px 0 4px; color: #79859b; font-size: 10px;
+  padding: 25px 0 4px; color: #5e6a81; font-size: 12px;
 }
 
 .empty-state {
@@ -227,7 +235,7 @@
   align-items: center; text-align: center;
 }
 .detail-nav button {
-  display: grid; width: 38px; height: 38px; place-items: center;
+  display: grid; width: 44px; height: 44px; place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.92); border-radius: 11px;
   color: #44506b; background: rgba(255, 255, 255, 0.7);
   box-shadow: 0 7px 18px rgba(67, 89, 133, 0.08); cursor: pointer;
@@ -256,7 +264,11 @@
 .detail-hero__status {
   display: inline-flex; align-items: center; gap: 5px; margin-top: 14px;
   padding: 6px 10px; border-radius: 999px; color: #177971;
-  background: #e3f7f3; font-size: 10px; font-weight: 800;
+  background: #e3f7f3; font-size: 12px; font-weight: 800;
+}
+.detail-review-status {
+  max-width: 330px; margin: 10px 0 0 !important; color: #59677f !important;
+  font-size: 11px !important; line-height: 1.55;
 }
 .detail-section { padding: 17px; border-top: 1px solid var(--lookup-line); }
 .detail-section--conclusion {
@@ -269,7 +281,7 @@
   color: var(--lookup-ink); font-size: 13px; font-weight: 800;
 }
 .detail-section__title small {
-  color: #8b95aa; font-size: 8px; font-weight: 800; letter-spacing: 0.1em;
+  color: #647088; font-size: 10px; font-weight: 800; letter-spacing: 0.08em;
 }
 .detail-conclusion {
   margin: 13px 0 0; color: #36435d; font-size: 13px;
@@ -291,10 +303,10 @@
 }
 .therapy-detail strong { font-size: 13px; }
 .therapy-detail span {
-  flex: 0 0 auto; color: #19786f; font-size: 9px; font-weight: 800;
+  flex: 0 0 auto; color: #19786f; font-size: 11px; font-weight: 800;
 }
 .therapy-detail p {
-  margin: 7px 0 0; color: #67738b; font-size: 11px; line-height: 1.55;
+  margin: 7px 0 0; color: #59667e; font-size: 12px; line-height: 1.55;
 }
 .detail-notes { display: grid; gap: 12px; }
 .detail-notes > div {
@@ -303,9 +315,9 @@
 .detail-notes svg {
   flex: 0 0 auto; margin-top: 2px; color: #5b5ce2;
 }
-.detail-notes p { margin: 0; font-size: 11px; line-height: 1.7; }
+.detail-notes p { margin: 0; font-size: 12px; line-height: 1.7; }
 .detail-notes strong {
-  display: block; margin-bottom: 2px; color: #26324b; font-size: 11px;
+  display: block; margin-bottom: 2px; color: #26324b; font-size: 12px;
 }
 .source-link {
   display: flex; align-items: center; gap: 11px; margin: 14px 0;
@@ -316,15 +328,15 @@
 .source-link > span {
   display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0;
 }
-.source-link small { color: #65938f; font-size: 9px; }
-.source-link strong { margin-top: 2px; font-size: 11px; }
+.source-link small { color: #4f7874; font-size: 11px; }
+.source-link strong { margin-top: 2px; font-size: 12px; }
 .source-link em {
-  margin-top: 3px; overflow: hidden; color: #74847f; font-size: 9px;
+  margin-top: 3px; overflow: hidden; color: #5c6e69; font-size: 11px;
   font-style: normal; text-overflow: ellipsis; white-space: nowrap;
 }
 .source-link > svg:last-child { flex: 0 0 auto; }
 .medical-disclaimer {
-  margin: 18px 8px 4px; color: #7c879d; font-size: 10px;
+  margin: 18px 8px 4px; color: #5e6a81; font-size: 12px;
   line-height: 1.7; text-align: center;
 }
 .sr-only {
@@ -341,7 +353,7 @@
 }
 @media (max-width: 374px) {
   .lookup-screen { padding-inline: 16px; }
-  .mode-tabs button { font-size: 10px; }
+  .mode-tabs button { font-size: 11px; }
   .lookup-brand__count { display: none; }
   .evidence-pill { max-width: 72px; line-height: 1.25; }
 }
