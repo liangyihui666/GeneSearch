@@ -18,6 +18,7 @@ export interface GeneEvidenceRecord {
   id: string
   symbol: string
   nameZh: string
+  nameEn: string
   aliases: string[]
   alteration: string
   cancers: string[]
@@ -39,6 +40,7 @@ export const evidenceRecords: GeneEvidenceRecord[] = [
     id: 'egfr-l858r-nsclc',
     symbol: 'EGFR',
     nameZh: '表皮生长因子受体',
+    nameEn: 'Epidermal Growth Factor Receptor',
     aliases: ['EGFR L858R', '21号外显子L858R', '19号外显子缺失', '泽瑞尼'],
     alteration: '19号外显子缺失 / 21号外显子 L858R',
     cancers: ['非小细胞肺癌', '肺腺癌'],
@@ -75,6 +77,7 @@ export const evidenceRecords: GeneEvidenceRecord[] = [
     id: 'ros1-nsclc',
     symbol: 'ROS1',
     nameZh: 'ROS 原癌基因 1',
+    nameEn: 'ROS Proto-Oncogene 1, Receptor Tyrosine Kinase',
     aliases: ['ROS1阳性', 'ROS1融合', '奥凯乐', 'Repotrectinib'],
     alteration: 'ROS1 融合 / 阳性',
     cancers: ['非小细胞肺癌', '肺癌'],
@@ -111,6 +114,7 @@ export const evidenceRecords: GeneEvidenceRecord[] = [
     id: 'met-ex14-nsclc',
     symbol: 'MET',
     nameZh: '间充质上皮转化因子',
+    nameEn: 'MET Proto-Oncogene, Receptor Tyrosine Kinase',
     aliases: ['MET exon 14', 'METex14', 'MET 14号外显子跳跃', '谷美替尼'],
     alteration: 'MET 14号外显子跳跃突变',
     cancers: ['非小细胞肺癌', '肺癌'],
@@ -146,6 +150,7 @@ export const evidenceRecords: GeneEvidenceRecord[] = [
     id: 'her2-positive-breast-gastric',
     symbol: 'ERBB2',
     nameZh: '人表皮生长因子受体 2（HER2）',
+    nameEn: 'Erb-B2 Receptor Tyrosine Kinase 2',
     aliases: ['HER2', 'ERBB2扩增', 'HER2过表达', '曲妥珠单抗', '赫赛汀'],
     alteration: 'HER2 阳性（扩增或过表达）',
     cancers: ['乳腺癌', '胃癌', '胃食管结合部癌'],
@@ -181,6 +186,7 @@ export const evidenceRecords: GeneEvidenceRecord[] = [
     id: 'cldn18-2-gastric',
     symbol: 'CLDN18.2',
     nameZh: '紧密连接蛋白 18.2',
+    nameEn: 'Claudin 18 Isoform 2',
     aliases: ['CLDN18', 'CLDN18.2阳性', '威络益', 'Zolbetuximab'],
     alteration: 'CLDN18.2 阳性、HER2 阴性',
     cancers: ['胃癌', '胃食管结合部腺癌'],

@@ -68,7 +68,7 @@ interface ResultCardProps {
 
 function ResultCard({ record, onOpen, onTherapySearch }: ResultCardProps) {
   return (
-    <article className="evidence-card">
+    <article className="evidence-card" onClick={onOpen}>
       <div className="evidence-card__topline">
         <div className="gene-identity">
           <span className="gene-identity__symbol">{record.symbol}</span>
@@ -89,7 +89,7 @@ function ResultCard({ record, onOpen, onTherapySearch }: ResultCardProps) {
         ))}
       </div>
 
-      <div className="therapy-block">
+      <div className="therapy-block" onClick={(event) => event.stopPropagation()}>
         <div className="therapy-block__heading">
           <span>
             <Pill size={17} weight="duotone" />
@@ -116,7 +116,11 @@ function ResultCard({ record, onOpen, onTherapySearch }: ResultCardProps) {
         className="evidence-card__detail"
         type="button"
         data-record-id={record.id}
-        onClick={onOpen}
+        onClick={(event) => {
+          event.stopPropagation()
+          onOpen()
+        }}
+        aria-label={`查看 ${record.symbol} 临床结论与适用条件`}
       >
         <span>
           <CheckCircle size={17} weight="fill" />
@@ -161,6 +165,48 @@ function DetailScreen({ record, onBack, headingRef }: DetailScreenProps) {
         </p>
       </section>
 
+      <section className="detail-overview" aria-labelledby="detail-overview-title">
+        <div className="detail-overview__heading">
+          <div>
+            <span id="detail-overview-title">基因信息总览</span>
+            <small>进入临床结论前先核对关键条件</small>
+          </div>
+          <strong>{record.symbol}</strong>
+        </div>
+        <dl className="overview-list">
+          <div>
+            <dt>中文名称</dt>
+            <dd>{record.nameZh}</dd>
+          </div>
+          <div>
+            <dt>英文全称</dt>
+            <dd lang="en">{record.nameEn}</dd>
+          </div>
+          <div>
+            <dt>证据依据</dt>
+            <dd>{record.evidenceLabel}</dd>
+          </div>
+          <div>
+            <dt>关键变异 / 标志物</dt>
+            <dd>{record.alteration}</dd>
+          </div>
+          <div className="overview-list__stacked">
+            <dt>相关癌种</dt>
+            <dd className="overview-tags">
+              {record.cancers.map((cancer) => <span key={cancer}>{cancer}</span>)}
+            </dd>
+          </div>
+          <div className="overview-list__stacked">
+            <dt>国内相关药物</dt>
+            <dd className="overview-therapies">
+              {record.therapies.map((therapy) => (
+                <span key={therapy.name}>{therapy.name}</span>
+              ))}
+            </dd>
+          </div>
+        </dl>
+      </section>
+
       <section className="detail-section detail-section--conclusion">
         <div className="detail-section__title">
           <CheckCircle size={20} weight="fill" />
@@ -188,6 +234,24 @@ function DetailScreen({ record, onBack, headingRef }: DetailScreenProps) {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="detail-section">
+        <div className="detail-section__title">
+          <Pill size={20} weight="duotone" />
+          <div>
+            <span>变异与用药提示</span>
+            <small>BIOMARKER &amp; THERAPY NOTES</small>
+          </div>
+        </div>
+        <div className="therapy-note-list">
+          {record.therapies.map((therapy) => (
+            <div key={therapy.name}>
+              <strong>{record.alteration}</strong>
+              <p><span>{therapy.name}</span>{therapy.useContext}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="detail-section">

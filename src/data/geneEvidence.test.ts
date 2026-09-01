@@ -13,6 +13,7 @@ describe('gene evidence search', () => {
 
   it('marks every record as domestic-source and pending medical review', () => {
     for (const record of evidenceRecords) {
+      expect(record.nameEn).not.toHaveLength(0)
       expect(record.source.organization).toContain('国家药品监督管理局')
       expect(record.contentStatus).toBe('国内官方来源已核对 · 医学文案待审')
     }

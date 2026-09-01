@@ -45,12 +45,24 @@ describe('Gene lookup app', () => {
   it('opens the evidence detail and preserves its domestic official source', async () => {
     const user = userEvent.setup()
     render(<App />)
-    await user.click(screen.getAllByRole('button', { name: '查看临床结论与适用条件' })[0])
+    await user.click(screen.getByRole('heading', { name: '表皮生长因子受体' }))
     expect(screen.getByRole('heading', { name: 'EGFR' })).toBeInTheDocument()
+    expect(screen.getByText('基因信息总览')).toBeInTheDocument()
+    expect(screen.getByText('Epidermal Growth Factor Receptor')).toBeInTheDocument()
+    expect(screen.getByText('变异与用药提示')).toBeInTheDocument()
     expect(screen.getByText('临床结论')).toBeInTheDocument()
     expect(screen.getByText('国家药品监督管理局（NMPA）')).toBeInTheDocument()
     expect(screen.getByText(/官方来源已核对 · 医学文案待审/)).toBeInTheDocument()
     expect(screen.getByText(/不替代临床判断/)).toBeInTheDocument()
+  })
+
+  it('keeps related-drug clicks as reverse lookup instead of opening detail', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await user.click(screen.getByRole('button', { name: '反查 谷美替尼 对应靶点' }))
+    expect(screen.getByRole('heading', { name: '间充质上皮转化因子' })).toBeInTheDocument()
+    expect(screen.queryByText('证据详情')).not.toBeInTheDocument()
+    expect(screen.getByText('1 条')).toBeInTheDocument()
   })
 
   it('shows an empty state and can reset it', async () => {

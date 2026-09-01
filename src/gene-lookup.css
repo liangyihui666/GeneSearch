@@ -144,6 +144,11 @@
   border: 1px solid rgba(255, 255, 255, 0.95); border-radius: 16px;
   background: rgba(255, 255, 255, 0.81);
   box-shadow: 0 13px 34px rgba(61, 84, 130, 0.09);
+  cursor: pointer; transition: box-shadow 180ms ease, transform 180ms ease;
+}
+.evidence-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 38px rgba(61, 84, 130, 0.13);
 }
 .evidence-card::before {
   position: absolute; width: 110px; height: 110px; right: -58px; top: -62px;
@@ -153,6 +158,9 @@
 }
 .evidence-card__topline {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+}
+.evidence-card:has(.evidence-card__detail:focus-visible) {
+  outline: 3px solid rgba(91, 92, 226, 0.42); outline-offset: 3px;
 }
 .gene-identity { display: flex; align-items: flex-start; gap: 11px; min-width: 0; }
 .gene-identity__symbol {
@@ -179,6 +187,7 @@
   color: #56627a; background: #f0f4fa; font-size: 12px; font-weight: 700;
 }
 .therapy-block {
+  position: relative; cursor: default;
   padding: 12px; border: 1px solid rgba(103, 143, 190, 0.15);
   border-radius: 12px;
   background: linear-gradient(145deg, rgba(238, 248, 255, 0.9), rgba(245, 243, 255, 0.76));
@@ -258,6 +267,7 @@
   margin-top: 3px; font-family: Georgia, 'Times New Roman', serif;
   font-size: 39px; letter-spacing: -0.04em;
 }
+.detail-hero h1:focus { outline: none; }
 .detail-hero > strong {
   max-width: 330px; margin-top: 6px; color: #536079; font-size: 13px;
 }
@@ -270,6 +280,38 @@
   max-width: 330px; margin: 10px 0 0 !important; color: #59677f !important;
   font-size: 11px !important; line-height: 1.55;
 }
+.detail-overview {
+  margin-bottom: 14px; padding: 17px;
+  border: 1px solid rgba(255, 255, 255, 0.96); border-radius: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 13px 32px rgba(61, 84, 130, 0.08);
+}
+.detail-overview__heading {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 14px;
+  padding-bottom: 14px; border-bottom: 1px solid var(--lookup-line);
+}
+.detail-overview__heading > div { display: flex; flex-direction: column; gap: 3px; }
+.detail-overview__heading span { color: #26324b; font-size: 14px; font-weight: 850; }
+.detail-overview__heading small { color: #647088; font-size: 11px; line-height: 1.45; }
+.detail-overview__heading > strong {
+  flex: 0 0 auto; color: #5255c6; font-family: Georgia, 'Times New Roman', serif;
+  font-size: 15px; letter-spacing: 0.01em;
+}
+.overview-list { margin: 0; }
+.overview-list > div {
+  display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid rgba(79, 97, 133, 0.09);
+}
+.overview-list > div:last-child { padding-bottom: 0; border-bottom: 0; }
+.overview-list dt, .overview-list dd { margin: 0; }
+.overview-list dt { color: #68748b; font-size: 11px; font-weight: 750; line-height: 1.55; }
+.overview-list dd { color: #33415b; font-size: 12px; font-weight: 700; line-height: 1.6; }
+.overview-tags, .overview-therapies { display: flex; flex-wrap: wrap; gap: 6px; }
+.overview-tags span {
+  padding: 4px 7px; border-radius: 7px; color: #56627a;
+  background: #f0f4fa; font-size: 11px;
+}
+.overview-therapies span { color: #4256aa; }
 .detail-section { padding: 17px; border-top: 1px solid var(--lookup-line); }
 .detail-section--conclusion {
   border: 1px solid rgba(91, 92, 226, 0.14); border-radius: 15px;
@@ -307,6 +349,16 @@
 }
 .therapy-detail p {
   margin: 7px 0 0; color: #59667e; font-size: 12px; line-height: 1.55;
+}
+.therapy-note-list { display: grid; gap: 10px; margin-top: 14px; }
+.therapy-note-list > div {
+  padding: 12px 13px; border-radius: 11px;
+  background: linear-gradient(145deg, rgba(241, 244, 255, 0.88), rgba(239, 249, 247, 0.76));
+}
+.therapy-note-list strong { color: #34415b; font-size: 12px; line-height: 1.55; }
+.therapy-note-list p { margin: 7px 0 0; color: #5b6780; font-size: 12px; line-height: 1.65; }
+.therapy-note-list p span {
+  display: inline-block; margin-right: 7px; color: #4d50b7; font-weight: 800;
 }
 .detail-notes { display: grid; gap: 12px; }
 .detail-notes > div {
@@ -356,6 +408,7 @@
   .mode-tabs button { font-size: 11px; }
   .lookup-brand__count { display: none; }
   .evidence-pill { max-width: 72px; line-height: 1.25; }
+  .overview-list > div { grid-template-columns: 82px minmax(0, 1fr); gap: 9px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .lookup-screen { animation: none; }
